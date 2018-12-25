@@ -11,3 +11,11 @@ if not ok then
     ngx.say(err)
     return
 end
+local sql = string.format( "INSERT INTO access_log (content, create_time) VALUES ('%s', %s)", 123, os.time())
+local res, err, errno, sqlstate = db:query(sql)
+db:close()
+-- ngx.say(#res)
+if not res then
+    ngx.say(err)
+    return
+end
